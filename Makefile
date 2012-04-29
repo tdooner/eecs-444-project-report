@@ -6,4 +6,4 @@ all:
 	dvipdfm report
 
 clean:
-	rm *.aux *.log
+	rm *.aux *.log *.blg *.bbl
