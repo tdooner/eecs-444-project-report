@@ -19,11 +19,60 @@ of account withdrawals and credits in an agreed-upon order by banks.
 \subsection*{Transferring Money, Today}
 If an entity wished to transfer money to another entity today, they have a few
 choices at their disposal. Some of these options include a check, a wire
-transfer, the Automated Clearing House system, or
-PayPal\cite{wiki:wiretransfer}.
+transfer, the Automated Clearing House (ACH) system, or
+PayPal\cite{wiki:wiretransfer}. All of these methods fail to employ mechanisms
+to make them irreversible and impervious to unfair trades.
+
+Wire Transfers rely on sophisticated networks of accounts at various banks, and
+unless funds are quickly retrieved from the destination bank, the wire transfer
+may be reversed by force of law. Wire transfer fraud is endemic to online
+solicitations, and the FBI concludes that wire transfers and ACH transactions
+cost businesses \$85 million USD per year\cite{wiretransferssuck}. 
+
+Automated clearing houses are also go-to methods of stealing from unsuspecting
+small businesses. The rate of ACH-based attacks on small businesses is growing,
+along with the number of lawsuits against the banks that allow these attacks to
+happen\cite{achsucks}. New laws place the loss in event of fraud squarely on the
+bank. This is an unfortunate legal situation perpetuated by the lack of
+technological solutions to the problem of fraud.
+
+\subsection*{Enter Cryptographic Currency}
+Cryptographic currency can solve the problem of fraud. If cryptographic currency
+can ascribe value to a series of bits, then we can ensure that the appropriate
+parties can be confident that their transactions were, in fact, initiated by the
+appropriate entities with the right to the money.
+
+However, this imposes new fascinating security problems. How can digital
+currency prevent duplicate spending? What security must be taken to maintain the
+private keys to your bank balance? Can someone design a system which is
+impervious to interference from any single controlling entity?
+
+But most importantly, what properties should digital cash fulfill? To answer
+this question, we will take a brief detour into the works of David Chaum.
 
 \section*{Properties of Cryptocurrency}
 % Tom
+In 1990, David Chaum, cryptologist and mathematician studying at UC Berkeley,
+published techniques which allow for the minting of digital
+currency.\cite{Chaum:Cash} Blind signature schemes, as they have come to be
+called, allow the creation of digital currency which fulfills many desirable
+properties of such a cash system. In 1991, Okamoto improved Chaum's algorithm
+by identifying these properties of an ideal cryptographic currency and
+implementing them:\cite{Okamoto:Cash}
+
+\begin{enumerate}
+\item \textbf{Independence}: The electronic cash must not depend on any physical condition.
+\item \textbf{Security}: The electronic cash should prevent double-spending and illegal creation.
+\item \textbf{Privacy}: Electronic cash transfers should not be traceable by a third party.
+\item \textbf{Off-line Payment}: Electronic transfers should be able to occur off-line.
+\item \textbf{Transferability}: The cash can be transferred to others.
+\item \textbf{Dividability}: The cash can be divided into smaller pieces.
+\end{enumerate}
+
+In this paper, we will analyze a specific implementation of electronic cash:
+Bitcoin. Bitcoin satisfies these properties, except for off-line payment. We
+will specifically focus on Bitcoin's security model and how it has been
+relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Introduction to Bitcoin}
 
