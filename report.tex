@@ -99,6 +99,39 @@ relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Bitcoin Wallet Security}
 % Will
+Key to the bitcoin network is the bitcoin desktop client.  The client is a desktop
+application that users can download to mine and trade bitcoins.  The original client
+was released by the creators of bitcoin as an open source c++ project\cite{Andresen:source}, although
+subsequent client programs have been released from various third parties.  
+
+A bitcoin user has two seperate goals when protecting their wallet, namely protecting
+against wallet loss and protecting against wallet theft.  The the distinction between 
+the two is that in the first, a user simply loses access to their wallet by deleting 
+the wallet.dat file, losing their computer, or something equally ordinary.  The second 
+goal, to protect against wallet theft, is much more complex an issue.
+
+One simple approach to preventing theft that many bitcoin users have taken is actually 
+using a paper wallet to store their bitcoing.  Several bitcoin paper wallet utilities 
+exist and are free to user on the internet.  To use them, a user typically downloads a 
+key generator tool and generates a private key for any number of their bitcoins.  The 
+user then prints out the private key and makes sure that it is saved nowhere but 
+physically on the piece of paper.  This way, a user can carry around any quantity of 
+bitcoins in their physical wallet.  When a user wants, theiy can import the bitcoins 
+either to their bitcoin client or to a bitcoin bank like MtGox.
+
+Another simple approach to preventing theft is to encrypt all or parts of the virtual 
+wallet.  Many users their wallet.dat file, and the makers of bitcoin are considering 
+adding a utility in the next release of bitcoin client that encrypts the private keys 
+in the wallet.dat file.  Other users have but their wallet.dat files in encrypted online 
+repositories using services like Dropbox or Wuala in conjunction with an encryption 
+program like 7-zip or TrueCrypt.  Other users find even more success in encrypting the 
+entire directory in which their bitcoin client resides.
+
+Still, however, the Bitcoin wallet represents a serious security problem for Bitcoin.  
+By default, the wallet.dat file is not encrypted, so any hacker who can gain entrance 
+into a vitims computer can steal their bitcoins simply by copying their wallet.dat file 
+and then using then transerring the private keys to their account.  Although not intrinsic 
+to Bitcoin theory, the wallet implementation is perhaps the foremost risk to Bitcoin.
 
 \section*{Attacks Against Bitcoin}
 % Will
