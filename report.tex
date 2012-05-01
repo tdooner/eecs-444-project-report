@@ -2,7 +2,7 @@
 \usepackage{geometry}
 \usepackage{url}
 \usepackage{cite}
-\usepackage{graphics}
+\usepackage{graphicx}
 
 \title{An Analysis of Security in Bitcoin, a Cryptographic Currency
 Implementation}
@@ -84,6 +84,13 @@ will specifically focus on Bitcoin's security model and how it has been
 relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Introduction to Bitcoin}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{images/bitcoin_v_time.pdf}
+\caption{Bitcoin Exchange Rate Over Time}
+\label{fig:bitcoinvalue}
+\end{center}
+\end{figure}
 % Ian
 In January 2009\cite{wiki:bitcoin}, Satoshi Nakamoto released his solution to the cryptographic currency problem. This currency, called Bitcoin, solves the problem of trusting centralized third parties such as banks or mints. Bitcoin is a peer-to-peer currency system, utilizing cryptographic proof and a network of nodes that must do computationally complex work in order to agree on the ``truth''\cite{Nakamoto:Bitcoin}.
 
@@ -114,6 +121,33 @@ The advantage of this system from a security standpoint is that attacks are comp
 
   \subsection*{Proof-of-Work Chain}
     
+
+\subsection*{Generation of Currency}
+Bitcoin has a nontrivial security problem to solve in the creation of money: how
+can currency be introduced fairly amongst all users in the network, such that no
+user can unfairly generate currency. Since there is no central authority to seed
+currency, there must be a secure distributed algorithm to introduce money into
+the Bitcoin economy.
+
+The brilliant method used by Bitcoin to introduce value into the economy
+generates value while simultaneously incentivizing clients to participate in
+computing the Proof-of-Work for the block chain. The cleverness is that when a
+new block is discovered at the end of the Proof-of-Work chain, the next block is
+initialized with a transaction granting its discoverer a number of Bitcoins.
+
+Over time, the number of Bitcoins granted to the discoverer of the block chain
+end diminishes until about 2040, when no future Bitcoins can be created. Figure
+\ref{fig:totalcoins} shows the total number of Bitcoins that will be in
+circulation at any point until about 2040, when the maximum of 21,000,000 coins
+will be created.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{images/quantity_v_time.pdf}
+\caption{Total Number of Bitcoins In Circulation Over Time}
+\label{fig:totalcoins}
+\end{center}
+\end{figure}
 
 \section*{Bitcoin Wallet Security}
 % Will
