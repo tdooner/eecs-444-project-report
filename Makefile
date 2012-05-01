@@ -1,9 +1,8 @@
 all:
-	latex report
+	pdflatex report
 	bibtex report
-	latex report
-	latex report
-	dvipdfm report
+	pdflatex report
+	pdflatex report
 
 clean:
 	rm *.aux *.log *.blg *.bbl
