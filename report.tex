@@ -85,6 +85,11 @@ relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Introduction to Bitcoin}
 % Ian
+In January 2009\cite{wiki:bitcoin}, Satoshi Nakamoto released his solution to the cryptographic currency problem. This currency, called Bitcoin, solves the problem of trusting centralized third parties such as banks or mints. Bitcoin is a peer-to-peer currency system, utilizing cryptographic proof and a network of nodes that must do computationally complex work in order to agree on the ``truth''\cite{Nakamoto:Bitcoin}.
+
+The advantage of this system from a security standpoint is that attacks are computationally difficult. This difficulty arises from the fact that a network of honest nodes are continually working to generate computational proof of honesty, so a dishonest attacker would have to outpace their calculations. However, since Bitcoins are also mined using computing power, it is ideally more profitable to be an honest miner than a dishonest cheater.
+
+
 % Include some graph of Bitcoin usage?
 
 % From http://cryptome.org/0005/bitcoin-who.pdf
@@ -95,15 +100,20 @@ relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Bitcoin Protocol Security}
 % Ian
-\subsection*{Creating a Transaction}
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics{images/coinchain.png}
-    \caption{Satoshi Nakamoto's Bitcoin}
-    \label{fig:coinchain}
-  \end{center}
-\end{figure}
-\subsection*{Proof-of-Work Chain}
+  \subsection*{Creating a Transaction}
+    A Bitcoin is a chain of digitally-signed transactions. Each transaction documents a change in the coin's ownership, so its legitimacy can always be tracked back to its origin (the point when it was first mined). As indicated in Figure \ref{fig:coinchain}, a coin owner who wishes to transfer the coin combines a hash of the previous transaction with the payee's public key, and signs it with his private key, adding the result to the end of the chain.
+    \begin{figure}[h]
+      \begin{center}
+        \includegraphics{images/coinchain.png}
+        \caption{Satoshi Nakamoto's Bitcoin \cite{Nakamoto:Bitcoin}}
+        \label{fig:coinchain}
+      \end{center}
+    \end{figure}
+    
+    This system allows for transactions to only be authorized by the owner of the private key associated with the public key at the end of the chain. This preserves ownership, but does not prevent double-spending on the part of the current owner. To achieve this, the network implements a distributed ``timestamp server'' whose goal is to perpetuate the one factual chronology of all transactions in the network.
+
+  \subsection*{Proof-of-Work Chain}
+    
 
 \section*{Bitcoin Wallet Security}
 % Will
