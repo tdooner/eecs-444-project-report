@@ -2,6 +2,7 @@
 \usepackage{geometry}
 \usepackage{url}
 \usepackage{cite}
+\usepackage{graphicx}
 
 \title{An Analysis of Security in Bitcoin, a Cryptographic Currency
 Implementation}
@@ -83,7 +84,19 @@ will specifically focus on Bitcoin's security model and how it has been
 relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Introduction to Bitcoin}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{images/bitcoin_v_time.pdf}
+\caption{Bitcoin Exchange Rate Over Time}
+\label{fig:bitcoinvalue}
+\end{center}
+\end{figure}
 % Ian
+In January 2009\cite{wiki:bitcoin}, Satoshi Nakamoto released his solution to the cryptographic currency problem. This currency, called Bitcoin, solves the problem of trusting centralized third parties such as banks or mints. Bitcoin is a peer-to-peer currency system, utilizing cryptographic proof and a network of nodes that must do computationally complex work in order to agree on the ``truth''\cite{Nakamoto:Bitcoin}.
+
+The advantage of this system from a security standpoint is that attacks are computationally difficult. This difficulty arises from the fact that a network of honest nodes are continually working to generate computational proof of honesty, so a dishonest attacker would have to outpace their calculations. However, since Bitcoins are also mined using computing power, it is ideally more profitable to be an honest miner than a dishonest cheater.
+
+
 % Include some graph of Bitcoin usage?
 
 % From http://cryptome.org/0005/bitcoin-who.pdf
@@ -94,8 +107,47 @@ relatively error-free over the course of millions of dollars of transactions.
 
 \section*{Bitcoin Protocol Security}
 % Ian
-\subsection*{Creating a Transaction}
-\subsection*{Proof-of-Work Chain}
+  \subsection*{Creating a Transaction}
+    A Bitcoin is a chain of digitally-signed transactions. Each transaction documents a change in the coin's ownership, so its legitimacy can always be tracked back to its origin (the point when it was first mined). As indicated in Figure \ref{fig:coinchain}, a coin owner who wishes to transfer the coin combines a hash of the previous transaction with the payee's public key, and signs it with his private key, adding the result to the end of the chain.
+    \begin{figure}[h]
+      \begin{center}
+        \includegraphics{images/coinchain.png}
+        \caption{Satoshi Nakamoto's Bitcoin \cite{Nakamoto:Bitcoin}}
+        \label{fig:coinchain}
+      \end{center}
+    \end{figure}
+    
+    This system allows for transactions to only be authorized by the owner of the private key associated with the public key at the end of the chain. This preserves ownership, but does not prevent double-spending on the part of the current owner. To achieve this, the network implements a distributed ``timestamp server'' whose goal is to perpetuate the one factual chronology of all transactions in the network.
+
+  \subsection*{Proof-of-Work Chain}
+    
+
+\subsection*{Generation of Currency}
+Bitcoin has a nontrivial security problem to solve in the creation of money: how
+can currency be introduced fairly amongst all users in the network, such that no
+user can unfairly generate currency. Since there is no central authority to seed
+currency, there must be a secure distributed algorithm to introduce money into
+the Bitcoin economy.
+
+The brilliant method used by Bitcoin to introduce value into the economy
+generates value while simultaneously incentivizing clients to participate in
+computing the Proof-of-Work for the block chain. The cleverness is that when a
+new block is discovered at the end of the Proof-of-Work chain, the next block is
+initialized with a transaction granting its discoverer a number of Bitcoins.
+
+Over time, the number of Bitcoins granted to the discoverer of the block chain
+end diminishes until about 2040, when no future Bitcoins can be created. Figure
+\ref{fig:totalcoins} shows the total number of Bitcoins that will be in
+circulation at any point until about 2040, when the maximum of 21,000,000 coins
+will be created.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{images/quantity_v_time.pdf}
+\caption{Total Number of Bitcoins In Circulation Over Time}
+\label{fig:totalcoins}
+\end{center}
+\end{figure}
 
 \section*{Bitcoin Wallet Security}
 % Will
