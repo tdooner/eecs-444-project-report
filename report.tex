@@ -101,19 +101,30 @@ The advantage of this system from a security standpoint is that attacks are comp
 \section*{Bitcoin Protocol Security}
 % Ian
   \subsection*{Creating a Transaction}
-    A Bitcoin is a chain of digitally-signed transactions. Each transaction documents a change in the coin's ownership, so its legitimacy can always be tracked back to its origin (the point when it was first mined). As indicated in Figure \ref{fig:coinchain}, a coin owner who wishes to transfer the coin combines a hash of the previous transaction with the payee's public key, and signs it with his private key, adding the result to the end of the chain.
+    A Bitcoin is a chain of digitally-signed transactions. Each transaction documents a change in the coin's ownership, so its legitimacy can always be tracked back to its origin (the point when it was first mined). As indicated in Figure \ref{fig:coinchain}, a coin owner who wishes to transfer the coin combines a hash of the previous transaction with the payee's public key, and signs it with his private key. 
+
     \begin{figure}[h]
       \begin{center}
         \includegraphics{images/coinchain.png}
-        \caption{Satoshi Nakamoto's Bitcoin \cite{Nakamoto:Bitcoin}}
+        \caption{Satoshi Nakamoto's Bitcoin. \cite{Nakamoto:Bitcoin}}
         \label{fig:coinchain}
       \end{center}
     \end{figure}
     
-    This system allows for transactions to only be authorized by the owner of the private key associated with the public key at the end of the chain. This preserves ownership, but does not prevent double-spending on the part of the current owner. To achieve this, the network implements a distributed ``timestamp server'' whose goal is to perpetuate the one factual chronology of all transactions in the network.
+    This system allows for transactions to only be authorized by the owner of the private key associated with the public key at the end of the chain. This preserves ownership, but does not prevent double-spending on the part of the current owner. To achieve this, the network implements a distributed ``timestamp server'' whose goal is to perpetuate the one factual chronology of all transactions in the network. This creates a transaction which is easily verifiable using the public key from the previous transaction to prove the original ownership, and thus the right to pass on the coin. The node then broadcasts the transaction to the network.
 
   \subsection*{Proof-of-Work Chain}
-    
+    Each time a transaction is broadcast to the network, nodes must perform a computationally-difficult task to ``lock'' it into history. Nodes combine all current pending transactions into a ``block''. They combine this block with the hash of the previous block (to create the chain) and proceed to compute a nonce that, when appended to the end of the block, makes the block hash to a number smaller than a given minimum. This computation is exponential in complexity relative to the minimum specified, but can be verified simply by hashing the resulting block to compare it to the requirement.
+
+    By doing this, nodes can agree on the block-chain history
+
+    \begin{figure}[h]
+      \begin{center}
+        \includegraphics{images/blockchain.png}
+        \caption{Proof-of-Work chain. Each `Tx' block is a pending transaction. \cite{Nakamoto:Bitcoin}}
+        \label{fig:blockchain}
+      \end{center}
+    \end{figure}
 
 \section*{Bitcoin Wallet Security}
 % Will
