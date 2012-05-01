@@ -1,0 +1,5 @@
+u <- read.table("data/price.dat")
+pdf("images/bitcoin_v_time.pdf",width=8,height=4,paper="special")
+plot(u$V5, type="l",xaxt="n",xlab="",ylab="Bitcoin Price (USD)", main="Bitcoin Price over Time")
+axis(1, at=seq(1,length(u$V5)), tick=0, labels=strftime(format(u$V1,format="%Y-%m-%d"),"%b"))
+dev.off()
